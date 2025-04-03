@@ -25,3 +25,7 @@ npm install
 ```
 npm run dev
 ```
+
+## Deploy
+
+https://fakeuserhub.netlify.app/
