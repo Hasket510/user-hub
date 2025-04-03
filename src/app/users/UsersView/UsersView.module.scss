@@ -1,0 +1,15 @@
+@use '@/styles/mixins.scss' as *;
+
+.usersContainer {
+	@include list;
+	padding: 1rem;
+	max-width: 20%;
+
+	.title {
+		text-decoration: underline;
+	}
+
+	.usersList {
+		@include list;
+	}
+}
