@@ -1,10 +1,5 @@
 import styles from './Pagination.module.scss'
-interface IPaginationProps {
-	usersPerPage: number
-	totalUsers: number
-	currentPage: number
-	paginate: (pageNumber: number) => void
-}
+import { IPaginationProps } from './Pagination.types'
 
 export function Pagination({
 	usersPerPage,
