@@ -1,23 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { api } from '../../lib/axios'
-
-export interface IUser {
-	id: number
-	name: string
-	email: string
-	avatar?: string
-}
-
-export interface IUsersState {
-	data: IUser[]
-	status: 'idle' | 'loading' | 'succeeded' | 'failed'
-	error: string | null
-	currentPage: number
-	usersPerPage: number
-}
+import { IUsersState } from './users.types'
 
 const initialState: IUsersState = {
 	data: [],
+	selectedUser: null,
 	status: 'idle',
 	error: null,
 	currentPage: 1,
@@ -28,6 +15,14 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 	const response = await api.get('/users')
 	return response.data
 })
+
+export const fetchUserById = createAsyncThunk(
+	'users/fetchUserById',
+	async (userId: string) => {
+		const response = await api.get(`/users/${userId}`)
+		return response.data
+	}
+)
 
 const usersSlice = createSlice({
 	name: 'users',
@@ -49,6 +44,17 @@ const usersSlice = createSlice({
 			.addCase(fetchUsers.rejected, (state, action) => {
 				state.status = 'failed'
 				state.error = action.error.message || 'Failed to fetch users'
+			})
+			.addCase(fetchUserById.pending, state => {
+				state.status = 'loading'
+			})
+			.addCase(fetchUserById.fulfilled, (state, action) => {
+				state.status = 'succeeded'
+				state.selectedUser = action.payload
+			})
+			.addCase(fetchUserById.rejected, (state, action) => {
+				state.status = 'failed'
+				state.error = action.error.message || 'User not found'
 			})
 	},
 })

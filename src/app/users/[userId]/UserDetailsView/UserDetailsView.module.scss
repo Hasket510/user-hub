@@ -1,0 +1,14 @@
+@use '@/styles/mixins.scss' as *;
+
+.userDetailsContainer {
+	padding: 1rem;
+	@include list;
+
+	.link {
+		font-size: 1.2rem;
+		transition: color 0.3s ease-in-out;
+		&:hover {
+			color: chocolate;
+		}
+	}
+}
