@@ -13,8 +13,8 @@ export function UserCard({ user }: { user: IUser }) {
 					height={70}
 				></Image>
 				<div className={styles.userInfo}>
-					<h3>{user.name}</h3>
-					<p>{user.email}</p>
+					<h3 className={styles.name}>{user.name}</h3>
+					<p className={styles.email}>{user.email}</p>
 				</div>
 			</Link>
 		</li>

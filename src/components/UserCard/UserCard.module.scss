@@ -11,5 +11,16 @@
 		padding: 0.5rem;
 		display: flex;
 		gap: 1rem;
+
+		.userInfo {
+			overflow: hidden;
+
+			.name,
+			.email {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
 	}
 }
